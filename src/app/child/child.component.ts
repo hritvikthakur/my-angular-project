@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnChanges, DoCheck, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-child',
@@ -9,6 +9,23 @@ export class ChildComponent {
   @Input() childData: number = 0; 
 
   @Output() childEvent = new EventEmitter<number>(); 
+
+  constructor() {
+    console.log('Constructor: ChildComponent created');
+  }
+
+  ngOnInit(): void {
+    console.log('ngOnInit: ChildComponent initialized with childData:', this.childData);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges: ChildComponent input property changed', changes);
+  }
+
+  ngDoCheck(): void {
+    console.log('ngDoCheck: ChildComponent change detection triggered');
+  }
+
 
   sendDataToParent() {
     

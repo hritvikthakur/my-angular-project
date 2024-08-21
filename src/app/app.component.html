@@ -10,8 +10,11 @@
 
 
 <!-- get data from api and display -->
+<input type="text" placeholder="Search..." [(ngModel)]="searchItem" (input)="filterUsers()" >
+
 <ul>
-    <li *ngFor="let user of users">
-        {{user.title}} 
+    <li *ngFor="let user of filteredUsers">
+        {{user.userId}} {{user.id}} {{user.title}}  {{user.completed}}
     </li>
 </ul>
+
