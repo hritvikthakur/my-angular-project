@@ -1,0 +1,45 @@
+.container {
+    display: flex;
+  }
+  
+  .nav {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 15px;
+  }
+  
+  /* .nav ul {
+    list-style-type: none;
+    padding: 0;
+  } */
+  
+  /* .nav ul li {
+    margin: 10px 0;
+  }
+  
+  .nav ul li a {
+    text-decoration: none;
+    color: #333;
+  } */
+  
+  /* .nav ul li a.active {
+    font-weight: bold;
+    color: #007bff;
+  }
+   */
+  /* .content {
+    flex: 1;
+    padding: 20px;
+    } */
+    .content {
+        flex:1;
+        position: absolute; /* Take the div out of the document flow */
+        right: 0; /* Align to the right */
+        /* margin-right: 100px; */
+        padding: 20px;
+        /* top: 20px; Optional: set the top position */
+      }
+      button{
+      justify-content: space-evenly;
+      margin-right: 10px;
+      }

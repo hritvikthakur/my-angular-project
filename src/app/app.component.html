@@ -18,3 +18,26 @@
     </li>
 </ul>
 
+<!-- routing part -->
+<div class="container">
+    <nav class="nav">
+<h1>Implementing Routing</h1>
+<ul>
+  <a routerLink ="/home" >Home</a>
+<br>
+  <a routerLink ="/about">About</a>
+<br>
+  <a routerLink ="/user">User</a>
+<br>
+  <a routerLink ="/contact" >Contact</a>
+<br>
+<br>
+<button (click)="login()">Login</button>
+<button (click)="logout()">Logout</button>
+</ul>
+    </nav>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

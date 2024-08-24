@@ -1,6 +1,6 @@
-import { Component , OnInit, OnChanges, DoCheck, SimpleChanges } from '@angular/core';
-// import { Form } from '@angular/forms';
+import { Component , OnInit, OnChanges, DoCheck,  AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy,SimpleChanges } from '@angular/core';
 import { usersDataService } from './usersData.service'
+import { AuthService } from './auth.service';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { usersDataService } from './usersData.service'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnChanges, DoCheck {
+export class AppComponent implements OnInit, OnChanges, DoCheck ,AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy {
   title = 'child-parent';
   dataToChild= 10;
   dataFromChild: any;
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
   searchItem: any;
   filteredUsers: any= []
 
-  constructor(private userData: usersDataService) {
+  constructor(private userData: usersDataService, private authService: AuthService) {
     console.log('Constructor: AppComponent created');
   }
 
@@ -36,6 +36,26 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
   
     ngDoCheck(): void {
       console.log('ngDoCheck: AppComponent change detection triggered');
+    }
+
+    ngAfterContentInit(): void {
+      console.log('ngAfterContentInit: Content has been projected into the component');
+    }
+  
+    ngAfterContentChecked(): void {
+      console.log('ngAfterContentChecked: Component content has been checked by the change detection mechanism');
+    }
+  
+    ngAfterViewInit(): void {
+      console.log('ngAfterViewInit: Component’s view (and child views) has been initialized');
+    }
+  
+    ngAfterViewChecked(): void {
+      console.log('ngAfterViewChecked: Component’s view (and child views) has been checked by the change detection mechanism');
+    }
+  
+    ngOnDestroy(): void {
+      console.log('ngOnDestroy: AppComponent is about to be destroyed');
     }
 
    updateChild() 
@@ -67,10 +87,19 @@ export class AppComponent implements OnInit, OnChanges, DoCheck {
       this.filteredUsers = this.users;
     }
   }
+
   
-}
+  // Login method
+  login() {
+    this.authService.login();
+  }
+
+  // Logout method
+  logout() {
+    this.authService.logout();
+  }
     
-  
+}
 
 
 
