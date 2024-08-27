@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { CanActivate ,CanLoad,Route, UrlSegment, Router, ActivatedRouteSnapshot, RouterStateSnapshot, } from '@angular/router';
+import { CanActivate ,CanMatch,Route, UrlSegment, Router, ActivatedRouteSnapshot, RouterStateSnapshot, } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService implements CanActivate, CanLoad {
+export class AuthService implements CanActivate, CanMatch {
 
   private isAuthenticated = false;
 
@@ -21,14 +21,18 @@ export class AuthService implements CanActivate, CanLoad {
       return false;
     }
   }
-canLoad(
+  canMatch(
     route: Route, 
     segments: UrlSegment[]
   )
   :boolean{
-    if(this.isAuthenticated){
+    const isFirstSegmentLogin = segments.length > 0 && segments[0].path === 'login';
+    
+    if (this.isAuthenticated) {
       return true;
-    }else{
+    } else if (isFirstSegmentLogin) {
+      return true; // Allow matching if the first segment is 'login'
+    } else {
       this.router.navigate(['/home']);
       return false;
     }
